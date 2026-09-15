@@ -40,7 +40,7 @@ export default function Navbar() {
           aria-label="Vishal Chettri home"
           onClick={() => setOpen(false)}
         >
-          vishal<span>.</span>
+          Vishal Chettri<span>.</span>
         </a>
         <div className={`nav-links ${open ? 'is-open' : ''}`} id="navigation">
           {links.map(([id, label]) => (
