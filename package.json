@@ -1,7 +1,7 @@
 {
   "name": "vishal-portfolio-react",
   "version": "1.0.0",
-  "description": "Vishal Chettri Portfolio - React Version with Star Animation",
+  "description": "Vishal Chettri's data science portfolio with an animated globe, project filters, and a responsive editorial design",
   "type": "module",
   "scripts": {
     "dev": "vite",
