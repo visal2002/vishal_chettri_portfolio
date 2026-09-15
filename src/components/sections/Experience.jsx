@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import { FiArrowDown, FiAward, FiBookOpen } from 'react-icons/fi';
+import { FiArrowDown, FiArrowUpRight, FiAward, FiBookOpen } from 'react-icons/fi';
 import { experiences, certifications, languages } from '../../data/portfolio.js';
+import { certificationsUrl } from '../../data/contact.js';
 import Reveal from '../ui/Reveal.jsx';
 import SectionHeading from '../ui/SectionHeading.jsx';
 export default function Experience() {
@@ -68,6 +69,14 @@ export default function Experience() {
                 <span key={cert}>{cert}</span>
               ))}
             </div>
+            <a
+              className="text-link certifications-link"
+              href={certificationsUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              View certifications on LinkedIn <FiArrowUpRight aria-hidden="true" />
+            </a>
           </Reveal>
         </div>
         <div className="languages">

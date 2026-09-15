@@ -1023,6 +1023,9 @@ h2 {
   border-top: 1px solid var(--line);
   font-size: 10px !important;
 }
+.certifications-link {
+  margin-top: 20px;
+}
 .credential .tags {
   margin-top: 16px;
   max-width: 440px;
