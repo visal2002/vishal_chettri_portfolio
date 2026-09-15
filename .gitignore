@@ -1,32 +1,26 @@
-# Dependencies
+# Dependencies and generated output
 node_modules/
-/.pnp
-.pnp.js
+dist/
+coverage/
+*.tsbuildinfo
 
-# Environment variables
+# Local environment
 .env
-.env.local
-.env.*.local
+.env.*
+!.env.example
 
-# IDE
+# Editors and operating systems
 .vscode/
 .idea/
+.DS_Store
+Thumbs.db
 *.swp
 *.swo
 *~
 
-# OS
-.DS_Store
-Thumbs.db
-
 # Logs
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
+*.log
 
-# Coverage
-/coverage/
-
-# Package lock files - keep package-lock.json for CI/CD
-# package-lock.json - Keep this for GitHub Actions
+# npm is the project package manager; commit package-lock.json
 yarn.lock
+pnpm-lock.yaml

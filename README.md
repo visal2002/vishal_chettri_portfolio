@@ -1,100 +1,79 @@
-# 🌌 Vishal Chettri | Proprietary Intelligence & Development Portfolio
+# Vishal Chettri — Portfolio
 
-[![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://reactjs.org/)
-[![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev/)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
-[![Framer Motion](https://img.shields.io/badge/Framer_Motion-0055FF?style=for-the-badge&logo=framer&logoColor=white)](https://www.framer.com/motion/)
+A React portfolio featuring project filters, an expandable experience timeline, an animated data globe, a contact form, and a local portfolio guide.
 
-A premium, high-performance portfolio engineered with the **Liquid Emerald** design system. This environment integrates advanced data science principles with modern web technologies to deliver a sophisticated, interactive user experience.
+[View the live portfolio](https://visal2002.github.io/vishal_chettri_portfolio/)
 
----
+## Development
 
-## 💎 Key Features
+Use Node.js 24 and npm. Run these commands from this folder:
 
-### 🟢 Liquid Emerald Interface
-*   **Glassmorphism Effects**: High-tech, translucent UI components with subtle backdrop blurs.
-*   **Dynamic Animations**: Seamless transitions and scroll-triggered effects powered by Framer Motion.
-*   **Interactive Environments**: Real-time starfield background, snowfall effects, and optimized grid overlays.
-
-### 🛡️ Secure Portal Environment
-*   **Proprietary Intelligence Access**: A restricted-access login portal for sensitive data and project management.
-*   **Encryption-Based UI**: High-security aesthetic with interactive login feedback and connection logic.
-
-### 🤖 Intelligent Personalization
-*   **Context-Aware Chatbot**: A resume-integrated AI assistant for professional inquiries and automated interaction.
-*   **Resume-Centric Tools**: Integrated PDF/DOCX processing for intelligent resume analysis and career-ready metrics.
-
----
-
-## 🛠️ Technological Stack
-
-| Category | Technologies |
-| :--- | :--- |
-| **Frontend Core** | React 18, Vite |
-| **Styling & Design** | Tailwind CSS, Lucide Icons, Framer Motion |
-| **Data & Logic** | React Router 7, Mammoth (DOCX), PDF-Parse |
-| **Deployment** | Netlify |
-
----
-
-## 📂 System Architecture
-
-```bash
-portfolio/
-├── src/
-│   ├── components/       # Visual & Interactive Modules
-│   │   ├── Login.jsx     # Secure Portal Access
-│   │   ├── Chatbot.jsx   # AI Personal Assistant
-│   │   ├── Navbar.jsx    # Responsive Navigation
-│   │   └── Hero.jsx      # High-Impact Introduction
-│   ├── services/         # Data & Logic Handlers
-│   ├── App.jsx           # Application Core & Routing
-│   └── index.css         # Liquid Emerald Design Tokens
-├── public/               # static Assets
-└── vite.config.js        # Infrastructure Configuration
+```sh
+npm ci
+npm run dev
 ```
 
----
+The development server runs at `http://localhost:3000` (or the next available port).
 
-## 🚀 Deployment & Development
+| Command                | Purpose                                         |
+| ---------------------- | ----------------------------------------------- |
+| `npm run dev`          | Start the development server                    |
+| `npm run build`        | Build the site into `dist/`                     |
+| `npm run preview`      | Preview the production build                    |
+| `npm run format`       | Format source, configuration, and documentation |
+| `npm run format:check` | Check formatting without changing files         |
+
+## Project structure
+
+```text
+.github/workflows/deploy.yml   GitHub Pages deployment
+public/
+  assets/images/              Project images, portraits, and organization logos
+  favicon.svg
+  Vishal_Chettri_Technical_Business_Analyst.pdf
+src/
+  components/
+    layout/                   Navigation and footer
+    sections/                 Hero, About, Projects, Skills, Experience, Contact
+    ui/                       Shared Reveal and SectionHeading components
+    visuals/                  Canvas data globe
+  data/
+    contact.js                Contact links, resume URL, and form endpoint
+    portfolio.js              Projects, experience, certifications, and languages
+  features/assistant/
+    Assistant.jsx             Portfolio guide interface and conversation state
+    answer.js                 Local answers based on portfolio data
+  styles/main.css             Site styles and responsive layouts
+  App.jsx                     Page composition and reading progress
+  main.jsx                    React entry point
+index.html                    Page metadata and root element
+```
+
+Vite builds the app, Tailwind CSS supplies its base styles and utilities, Framer Motion handles transitions, and React Icons supplies icons. This is a JavaScript project; `jsconfig.json` configures editor support.
+
+## Updating content
+
+- Edit projects and work experience in `src/data/portfolio.js`.
+- Edit contact details and the Formspree endpoint in `src/data/contact.js`.
+- Edit section content in `src/components/sections/` and appearance in `src/styles/main.css`.
+- Keep public asset URLs relative to `import.meta.env.BASE_URL` so they work locally and under the GitHub Pages repository path.
+- The portfolio guide generates answers locally. The contact form sends submissions to Formspree; testing a real submission sends a message to the configured recipient.
+
+## Deployment
 
 ### GitHub Pages
 
-GitHub Pages requires a public repository on the Free plan, or a plan that supports Pages for private repositories. If enabling Pages reports that the current plan does not support this repository, resolve repository visibility or plan eligibility first.
+In repository **Settings > Pages**, choose **GitHub Actions** as the publishing source. Pages must be enabled and supported by the repository's visibility and GitHub plan.
 
-Before running the deployment workflow, open [Settings > Pages](https://github.com/visal2002/vishal_chettri_portfolio/settings/pages) and select **GitHub Actions** under **Build and deployment > Source**. This is a one-time repository setting; without it, the Setup Pages step fails with `HttpError: Not Found`.
+Push to `main` or `master`, or run **Actions > Deploy to GitHub Pages > Run workflow**. The workflow installs locked dependencies, builds the app, uploads `dist/`, and deploys it. It sets `VITE_BASE_PATH` from the Pages configuration, including support for a custom domain.
 
-Commit and push the changes to `main` or `master`, or run **Actions > Deploy to GitHub Pages > Run workflow** once the workflow changes are on GitHub. The workflow builds with Node.js 24 and uses the Pages base path so scripts, images, and the resume load under the repository URL or a custom domain.
+### Netlify
 
-The default site URL is https://visal2002.github.io/vishal_chettri_portfolio/.
+The optional `netlify.toml` runs `npm run build` with Node.js 24 and publishes `dist/`. The default base path is `/`.
 
-### Local Installation
+## Repository conventions
 
-1.  **Clone the Repository**
-    ```bash
-    git clone https://github.com/visal2002/vishal_chettri_portfolio.git
-    cd vishal_chettri_portfolio
-    ```
-
-2.  **Install Dependencies**
-    ```bash
-    npm install
-    ```
-
-3.  **Launch Environment**
-    ```bash
-    npm run dev
-    ```
-
----
-
-## 📫 Strategic Contact
-
-*   **Identity**: Vishal Chettri
-*   **Security Designation**: Data Scientist & Full-Stack Developer
-*   **Direct Channel**: [chettrivishal22@gmail.com](mailto:chettrivishal22@gmail.com)
-*   **LinkedIn**: [v-chettri](https://www.linkedin.com/in/vishal-chettri-3122831b1)
-*   **Operational Demo**: [Live Environment](https://visal2002.github.io/vishal_chettri_portfolio/)
-
----
-*Generated by the Liquid Emerald Intelligence Engine.*
+- Commit source files and `package-lock.json`.
+- Keep generated `dist/`, dependencies, local environment files, and editor files out of Git.
+- Store only assets used by the site in `public/`: Vite copies everything there into the published build.
+- Run `npm run format:check` and `npm run build` before committing changes.

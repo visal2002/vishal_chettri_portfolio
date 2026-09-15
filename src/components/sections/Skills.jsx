@@ -1,0 +1,87 @@
+import { FiCode, FiCpu, FiBarChart2, FiLayers, FiGlobe, FiPenTool } from 'react-icons/fi';
+import Reveal from '../ui/Reveal.jsx';
+import SectionHeading from '../ui/SectionHeading.jsx';
+const skills = [
+  [
+    FiCode,
+    'Programming & analytics',
+    'From raw data to a clear direction.',
+    ['Python', 'Pandas', 'NumPy', 'SQL', 'MySQL'],
+  ],
+  [
+    FiCpu,
+    'Machine learning & AI',
+    'Finding patterns. Building possibilities.',
+    ['Scikit-learn', 'NLP', 'Regression', 'Predictive modeling', 'Hypothesis testing'],
+  ],
+  [
+    FiBarChart2,
+    'Business intelligence',
+    'Making the numbers tell their story.',
+    ['Power BI', 'Tableau', 'Excel', 'DAX', 'Data visualization'],
+  ],
+  [
+    FiLayers,
+    'Tools & infrastructure',
+    'The foundations that bring ideas to life.',
+    ['GitHub', 'Firebase', 'AWS', 'PyMuPDF', 'OCR'],
+  ],
+  [
+    FiGlobe,
+    'Web development',
+    'Thoughtful, responsive digital experiences.',
+    ['React', 'JavaScript', 'HTML', 'CSS'],
+  ],
+  [
+    FiPenTool,
+    'Creative & design',
+    'A little visual thinking goes a long way.',
+    ['Figma', 'Canva', 'Adobe Lightroom', 'Adobe Rush'],
+  ],
+];
+export default function Skills() {
+  return (
+    <section id="skills" className="section container">
+      <SectionHeading
+        number="03"
+        label="WHAT I BRING TO THE TABLE"
+        title={
+          <>
+            The right tools.
+            <br />
+            <span className="serif-accent">A curious mindset.</span>
+          </>
+        }
+      >
+        <p>
+          Technical depth meets creative thinking. Here’s what I work with to turn a good question
+          into a great solution.
+        </p>
+      </SectionHeading>
+      <div className="skills-grid">
+        {skills.map(([Icon, title, description, tags], index) => (
+          <Reveal className="skill-card" key={title} delay={(index % 3) * 0.06}>
+            <div className="skill-top">
+              <Icon />
+              <span className="mono">0{index + 1}</span>
+            </div>
+            <h3>{title}</h3>
+            <p>{description}</p>
+            <div className="tags">
+              {tags.map((tag) => (
+                <span key={tag}>{tag}</span>
+              ))}
+            </div>
+          </Reveal>
+        ))}
+      </div>
+      <Reveal className="soft-skills">
+        <span className="eyebrow">BEYOND THE TECH</span>
+        <p>
+          Analytical thinking <span>✳</span> Clear communication <span>✳</span> Collaboration{' '}
+          <span>✳</span> Attention to detail
+        </p>
+      </Reveal>
+    </section>
+  );
+}
