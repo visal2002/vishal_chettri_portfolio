@@ -60,6 +60,8 @@ portfolio/
 
 ### GitHub Pages
 
+GitHub Pages requires a public repository on the Free plan, or a plan that supports Pages for private repositories. If enabling Pages reports that the current plan does not support this repository, resolve repository visibility or plan eligibility first.
+
 Before running the deployment workflow, open [Settings > Pages](https://github.com/visal2002/vishal_chettri_portfolio/settings/pages) and select **GitHub Actions** under **Build and deployment > Source**. This is a one-time repository setting; without it, the Setup Pages step fails with `HttpError: Not Found`.
 
 Commit and push the changes to `main` or `master`, or run **Actions > Deploy to GitHub Pages > Run workflow** once the workflow changes are on GitHub. The workflow builds with Node.js 24 and uses the Pages base path so scripts, images, and the resume load under the repository URL or a custom domain.
