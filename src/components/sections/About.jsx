@@ -48,8 +48,9 @@ export default function About() {
           </p>
           <p>
             My journey spans analytics and meaningful projects with UNDP Bhutan, GovTech Bhutan, and
-            Earth5R. Today, I support banking systems and data-driven decisions as an IT Officer at
-            Bank of Bhutan, and contribute to collaborative AI projects at Omdena.
+            Earth5R. Today, I support banking systems and data-driven decisions as a System
+            Administrator at Bank of Bhutan. Previously, I contributed to collaborative AI projects
+            at Omdena.
           </p>
           <div className="about-facts">
             <div>

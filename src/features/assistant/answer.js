@@ -18,7 +18,7 @@ export function answer(question) {
   if (/skill|python|sql|tech|power bi|machine|\bai\b|expertise/.test(q))
     return 'Vishal works with Python (Pandas, NumPy, Scikit-learn), SQL, Power BI, Tableau, and Excel. His machine learning skills include NLP, regression, and predictive modeling. He also builds interfaces with React, JavaScript, HTML, and CSS, and designs with Figma and Canva.';
   if (/about|who|vishal|location|bhutan/.test(q))
-    return 'Vishal Chettri is a data scientist and AI enthusiast based in Thimphu, Bhutan. He combines analytics, business intelligence, machine learning, and interface design. He currently works as an IT Officer at Bank of Bhutan and an AI Engineer with Omdena.';
+    return 'Vishal Chettri is a data scientist and AI enthusiast based in Thimphu, Bhutan. He combines analytics, business intelligence, machine learning, and interface design. He currently works as a System Administrator at Bank of Bhutan and previously contributed to AI and full-stack development projects with Omdena from May to November 2025.';
   if (/^(hi|hello|hey)\b/.test(q))
     return 'Hi there! I can help you explore Vishal’s projects, skills, experience, education, or contact details. What would you like to know?';
   return 'I’m a quick guide to this portfolio. Try asking about Vishal’s skills, projects, experience, education, certifications, or contact details. For anything else, send him a message using the contact form.';
