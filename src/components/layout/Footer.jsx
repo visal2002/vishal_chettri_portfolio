@@ -5,7 +5,7 @@ export default function Footer() {
       <a className="wordmark" href="#home">
         Vishal Chettri<span>.</span>
       </a>
-      <p>© {new Date().getFullYear()} Vishal Chettri. Made with intention.</p>
+      <p>© {new Date().getFullYear()} Vishal Chettri.</p>
       <a href="#home" className="back-top">
         Back to top <FiArrowUp />
       </a>
