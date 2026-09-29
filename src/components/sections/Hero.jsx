@@ -4,6 +4,26 @@ import Reveal from '../ui/Reveal.jsx';
 import { resumeUrl } from '../../data/contact.js';
 import DataGlobe from '../visuals/DataGlobe.jsx';
 export default function Hero() {
+  const moveVisual = (event) => {
+    if (
+      event.pointerType !== 'mouse' ||
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    )
+      return;
+    const bounds = event.currentTarget.getBoundingClientRect();
+    const x = (event.clientX - bounds.left) / bounds.width;
+    const y = (event.clientY - bounds.top) / bounds.height;
+    event.currentTarget.style.setProperty('--pointer-x', `${x * 100}%`);
+    event.currentTarget.style.setProperty('--pointer-y', `${y * 100}%`);
+    event.currentTarget.style.setProperty('--globe-x', `${(x - 0.5) * 18}px`);
+    event.currentTarget.style.setProperty('--globe-y', `${(y - 0.5) * 18}px`);
+  };
+  const resetVisual = (event) => {
+    event.currentTarget.style.setProperty('--pointer-x', '50%');
+    event.currentTarget.style.setProperty('--pointer-y', '50%');
+    event.currentTarget.style.setProperty('--globe-x', '0px');
+    event.currentTarget.style.setProperty('--globe-y', '0px');
+  };
   return (
     <section id="home" className="hero container">
       <div className="hero-grid">
@@ -50,7 +70,12 @@ export default function Hero() {
             <span>Thinking globally.</span>
           </Reveal>
         </div>
-        <Reveal className="hero-visual" delay={0.15}>
+        <Reveal
+          className="hero-visual"
+          delay={0.15}
+          onPointerMove={moveVisual}
+          onPointerLeave={resetVisual}
+        >
           <div className="visual-coordinate">27.4728° N · 89.6393° E</div>
           <div className="orbit orbit-one" />
           <div className="orbit orbit-two" />

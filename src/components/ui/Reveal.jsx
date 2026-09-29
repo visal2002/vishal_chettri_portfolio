@@ -1,6 +1,6 @@
 import { motion, useReducedMotion } from 'framer-motion';
 
-export default function Reveal({ children, className = '', delay = 0 }) {
+export default function Reveal({ children, className = '', delay = 0, ...props }) {
   const reduce = useReducedMotion();
   return (
     <motion.div
@@ -22,6 +22,10 @@ export default function Reveal({ children, className = '', delay = 0 }) {
         delay,
         ease: [0.22, 1, 0.36, 1],
       }}
+      onViewportEnter={(entry) => {
+        entry.target.dataset.revealed = 'true';
+      }}
+      {...props}
     >
       {children}
     </motion.div>

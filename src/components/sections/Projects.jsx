@@ -1,11 +1,12 @@
 import { useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import { FiArrowDown, FiArrowUpRight, FiCheck } from 'react-icons/fi';
 import { projects } from '../../data/portfolio.js';
 import Reveal from '../ui/Reveal.jsx';
 import SectionHeading from '../ui/SectionHeading.jsx';
 const categories = ['All work', 'AI & Machine Learning', 'Data Analytics'];
 export default function Projects() {
+  const reduce = useReducedMotion();
   const [filter, setFilter] = useState('All work');
   const [showAll, setShowAll] = useState(false);
   const filtered = projects.filter(
@@ -16,6 +17,12 @@ export default function Projects() {
         : !p.technologies.includes('Data Visualization') && !p.technologies.includes('ARIMA')),
   );
   const visible = showAll ? filtered : filtered.slice(0, 4);
+  const moveSpotlight = (event) => {
+    if (event.pointerType !== 'mouse' || reduce) return;
+    const bounds = event.currentTarget.getBoundingClientRect();
+    event.currentTarget.style.setProperty('--spot-x', `${event.clientX - bounds.left}px`);
+    event.currentTarget.style.setProperty('--spot-y', `${event.clientY - bounds.top}px`);
+  };
   return (
     <section id="projects" className="section work-section">
       <div className="container">
@@ -56,18 +63,19 @@ export default function Projects() {
             <motion.article
               key={project.title}
               layout
-              initial={{
-                opacity: 0,
-                y: 16,
-              }}
-              animate={{
-                opacity: 1,
-                y: 0,
-              }}
+              initial={reduce ? false : { opacity: 0, y: 26, scale: 0.985 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              viewport={{ once: true, amount: 0.12 }}
               transition={{
-                duration: 0.35,
+                duration: reduce ? 0 : 0.55,
+                ease: [0.22, 1, 0.36, 1],
               }}
               className="project-card"
+              onPointerMove={moveSpotlight}
+              onPointerLeave={(event) => {
+                event.currentTarget.style.setProperty('--spot-x', '50%');
+                event.currentTarget.style.setProperty('--spot-y', '50%');
+              }}
             >
               <div className={`project-image project-tone-${projects.indexOf(project)}`}>
                 <img src={project.image} alt={project.title} loading="lazy" />

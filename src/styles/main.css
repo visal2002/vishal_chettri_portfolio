@@ -216,6 +216,9 @@ section {
   box-shadow: 0 0 0 4px #78896913;
   flex-shrink: 0;
 }
+.hero-eyebrow .status-dot {
+  animation: status-pulse 2.8s ease-out infinite;
+}
 .hero h1 {
   font-family: 'Manrope', sans-serif;
   font-weight: 500;
@@ -336,12 +339,26 @@ section {
   isolation: isolate;
   background: radial-gradient(ellipse at 50% 50%, #e3b59b1e, transparent 68%);
 }
+.hero-visual::before {
+  content: '';
+  position: absolute;
+  inset: 5%;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at var(--pointer-x, 50%) var(--pointer-y, 50%),
+    #d55c361a,
+    transparent 58%
+  );
+  pointer-events: none;
+}
 .data-globe {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   z-index: 1;
+  transform: translate3d(var(--globe-x, 0px), var(--globe-y, 0px), 0);
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
 }
 .visual-coordinate {
   position: absolute;
@@ -364,6 +381,7 @@ section {
   width: 96%;
   height: 39%;
   transform: translate(-50%, -50%) rotate(-30deg);
+  animation: orbit-sway 11s ease-in-out infinite alternate;
 }
 .orbit-two {
   width: 91%;
@@ -371,6 +389,7 @@ section {
   transform: translate(-50%, -50%) rotate(29deg);
   border-style: dashed;
   border-color: #d6cabe40;
+  animation: orbit-sway 14s ease-in-out infinite alternate-reverse;
 }
 .float-label {
   position: absolute;
@@ -528,6 +547,16 @@ section {
   margin-bottom: 20px;
   color: var(--muted);
 }
+.section-heading h2 .serif-accent {
+  background-image: linear-gradient(#d55c3655, #d55c3655);
+  background-position: 0 94%;
+  background-repeat: no-repeat;
+  background-size: 0 0.09em;
+  transition: background-size 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.2s;
+}
+.section-heading[data-revealed='true'] h2 .serif-accent {
+  background-size: 100% 0.09em;
+}
 h2 {
   font-family: 'Manrope', sans-serif;
   font-size: 44px;
@@ -680,15 +709,37 @@ h2 {
   gap: 34px 26px;
 }
 .project-card {
+  position: relative;
   min-width: 0;
   background: var(--paper);
   border: 1px solid #e1dfd6;
   border-radius: 8px;
   overflow: hidden;
-  transition: box-shadow 0.3s;
+  transition:
+    box-shadow 0.3s,
+    border-color 0.3s;
+}
+.project-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  border-radius: inherit;
+  background: radial-gradient(
+    240px circle at var(--spot-x, 50%) var(--spot-y, 50%),
+    #d55c3614,
+    transparent 75%
+  );
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s;
 }
 .project-card:hover {
   box-shadow: 0 12px 35px #4844360c;
+  border-color: #d8c6b6;
+}
+.project-card:hover::before {
+  opacity: 1;
 }
 .project-image {
   height: 265px;
@@ -696,6 +747,23 @@ h2 {
   overflow: hidden;
   padding: 25px 38px 0;
   background: #e6e6dd;
+}
+.project-image::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(105deg, transparent 30%, #ffffff45 50%, transparent 70%);
+  transform: translateX(-125%);
+  pointer-events: none;
+  transition: transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.project-card:hover .project-image::after {
+  transform: translateX(125%);
+}
+.project-number,
+.project-image-label {
+  z-index: 2;
 }
 .project-image img {
   width: 100%;
@@ -866,6 +934,10 @@ h2 {
   color: var(--accent);
   font-size: 24px;
   stroke-width: 1.4;
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.skill-card:hover .skill-top > svg {
+  transform: translateY(-4px) rotate(-8deg) scale(1.08);
 }
 .skill-top .mono {
   font-size: 9px;
@@ -908,12 +980,28 @@ h2 {
   border-block: 1px solid var(--line);
 }
 .experience-row {
+  position: relative;
   display: grid;
   grid-template-columns: 215px 47px 1fr;
   gap: 25px;
   padding: 25px 0;
   border-top: 1px solid var(--line);
   align-items: start;
+}
+.experience-row::before {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.experience-row:hover::before {
+  transform: scaleX(1);
 }
 .experience-date {
   display: flex;
@@ -1328,6 +1416,19 @@ h2 {
   }
   50% {
     translate: 0 -11px;
+  }
+}
+@keyframes orbit-sway {
+  from {
+    rotate: -5deg;
+  }
+  to {
+    rotate: 5deg;
+  }
+}
+@keyframes status-pulse {
+  50% {
+    box-shadow: 0 0 0 7px #78896906;
   }
 }
 @keyframes asterisk-turn {
@@ -2015,5 +2116,8 @@ h2 {
   }
   .reading-progress {
     display: none;
+  }
+  .data-globe {
+    transform: none;
   }
 }
